@@ -1,0 +1,45 @@
+create database `rpi_temp_database`;
+
+use `rpi_temp_database`;
+
+CREATE TABLE IF NOT EXISTS `sensors` (
+  `id` int(64) NOT NULL,
+  `address` varchar(256) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `type` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `sensors` (`id`, `address`, `name`, `type`) VALUES
+(1, '28-0315652e24ff', 'Your name here 1', 'DS1820'),
+(2, '28-0415a30e8dff', 'Your name here 2', 'DS1820'),
+(3, '28-011565140dff', 'Your name here 3', 'DS1820'),
+(4, '28-031565213bff', 'Your name here 4', 'DS1820');
+
+
+CREATE TABLE IF NOT EXISTS `temp_control` (
+  `email` varchar(256) NOT NULL,
+  `sensor` varchar(256) NOT NULL,
+  `tempmin` decimal(65,8) NOT NULL,
+  `tempmax` decimal(65,8) NOT NULL,
+  `howoften` int(255) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `content` varchar(256) NOT NULL,
+  `command` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `temp_control` (`email`, `sensor`, `tempmin`, `tempmax`, `howoften`, `title`, `content`, `command`) VALUES
+('spam@gmail.com', 'Your name here 1', 10.00000000, 22.30000000, 60, 'Title 1', 'Content', ''),
+('test@test.com', 'Your name here 2', 35.00000000, 75.00000000, 360, 'Check sth', 'Check xyz', 'gpio write 5 1');
+
+CREATE TABLE IF NOT EXISTS `stored_temperatures` (
+  `counter` int(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `date` datetime NOT NULL,
+  `temp` float NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE `stored_temperatures` ADD PRIMARY KEY (`counter`);
+
+ALTER TABLE `stored_temperatures` MODIFY `counter` int(255) NOT NULL AUTO_INCREMENT; 
