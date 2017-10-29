@@ -10,8 +10,7 @@ using namespace std;
 int main()
 {
 
-    try
-    {
+    
     std::shared_ptr<MySQLdb> base (new MySQLdb);
 
     SensorManager manager(base);
@@ -23,12 +22,7 @@ int main()
         tcontrl.Download_cases();
         tcontrl.Download_sensors();
         tcontrl.control();
-    }
-
-    catch(...)
-    {
-    exit(-1);
-    }
+        
 
     return 0;
 }
