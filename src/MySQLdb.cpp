@@ -23,7 +23,15 @@ std::vector <std::shared_ptr <Sensor>> MySQLdb::readsensors()
     idquery = mysql_store_result(&mysql);
     while((row = mysql_fetch_row(idquery)) != NULL)
         sensors.push_back(std::make_shared<DS18B20>(row[2],row[1]));
-    }
+    
+	query = std::string("SELECT * FROM ") + tabsensors + " where `" + tabsensors_type + "`='BMP280'";
+	mysql_query(&mysql,query.c_str() );
+
+    idquery = mysql_store_result(&mysql);
+    while((row = mysql_fetch_row(idquery)) != NULL)
+        sensors.push_back(std::make_shared<BMP280>(row[2],row[1]));
+	
+	}
 
 return sensors;
 }

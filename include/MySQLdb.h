@@ -11,6 +11,7 @@
 #include "data.h"
 #include "DS18B20.h"
 #include "Sensor.h"
+#include "BMP280.h"
 
 class MySQLdb:public Database
 {
